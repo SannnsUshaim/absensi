@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['role']) || $_SESSION['role'] != "admin") {
-    header("location: /absensi_native/index.php");
-    exit;
+    header("location: ../../403.php");
+    exit(0);
 }
 
 $userid = $_SESSION['user_id'];
@@ -16,7 +16,7 @@ $query_user = mysqli_query($koneksi, "SELECT * FROM user WHERE user_id = '$useri
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi.</title>
     <link rel="stylesheet" href="output.css">
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="w-full">
     <div class="flex min-h-screen w-full relative">
@@ -74,7 +74,7 @@ $query_user = mysqli_query($koneksi, "SELECT * FROM user WHERE user_id = '$useri
                     <form method='POST' action='./controller/hapus_mapel.php?id=$data[id_mapel]' class='w-full h-full absolute z-10'>
                         <div class='flex w-full h-full justify-center items-center bg-black bg-opacity-15'>
                             <div class='bg-white px-6 py-4 shadow-lg rounded-xl'>
-                                <h1 class='mb-3' >You're about to delete <b>$data[id_mapel]</b> record.</h1> 
+                                <h1 class='mb-3' >You're about to delete <b>$data[id_mapel]</b> record and all related.</h1> 
                                 <div class='flex text-white gap-1 float-right'>
                                     <button type='submit' name='delete' class='py-1 px-3 bg-blue-500 rounded-lg'>Ok</button>
                                     <a href='?page=data_mapel' class='py-1 px-3 bg-red-500 rounded-lg'>Cancel</a>
@@ -95,10 +95,53 @@ $query_user = mysqli_query($koneksi, "SELECT * FROM user WHERE user_id = '$useri
                     <form method='POST' action='./controller/hapus_kelas.php?id=$data[id_kelas]' class='w-full h-full absolute z-10'>
                         <div class='flex w-full h-full justify-center items-center bg-black bg-opacity-15'>
                             <div class='bg-white px-6 py-4 shadow-lg rounded-xl'>
-                                <h1 class='mb-3' >You're about to delete <b>$data[id_kelas]</b> record.</h1> 
+                                <h1 class='mb-3' >You're about to delete <b>$data[id_kelas]</b> record and all related.</h1> 
                                 <div class='flex text-white gap-1 float-right'>
                                     <button type='submit' name='delete' class='py-1 px-3 bg-blue-500 rounded-lg'>Ok</button>
                                     <a href='?page=data_kelas' class='py-1 px-3 bg-red-500 rounded-lg'>Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    ";
+                }
+            }  
+        } else if ($_GET['delete'] == 5) {
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $query = mysqli_query($koneksi, "SELECT * FROM jadwal WHERE id_jadwal = '$id'") or die('Query Error : '.mysqli_error($koneksi));
+                while ($data = mysqli_fetch_assoc($query)) {
+                    $id = $data['id_jadwal'];
+                    echo "
+                    <form method='POST' action='./controller/hapus_jadwal.php?id=$data[id_jadwal]' class='w-full h-full absolute z-10'>
+                        <div class='flex w-full h-full justify-center items-center bg-black bg-opacity-15'>
+                            <div class='bg-white px-6 py-4 shadow-lg rounded-xl'>
+                                <h1 class='mb-3' >You're about to delete <b>$data[id_jadwal]</b> record and all related.</h1> 
+                                <div class='flex text-white gap-1 float-right'>
+                                    <button type='submit' name='delete' class='py-1 px-3 bg-blue-500 rounded-lg'>Ok</button>
+                                    <a href='?page=jadwal' class='py-1 px-3 bg-red-500 rounded-lg'>Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    ";
+                }
+            }  
+        } else if ($_GET['delete'] == 6) {
+            if (isset($_GET['id_jadwal'], $_GET['id_kelas'], $_GET['id_mapel'])) {
+                $id_jadwal = $_GET['id_jadwal'];
+                $id_kelas = $_GET['id_kelas'];
+                $id_mapel = $_GET['id_mapel'];
+                $query = mysqli_query($koneksi, "SELECT * FROM jadwal_absen LEFT JOIN jadwal ON jadwal_absen.id_jadwal = jadwal.$data[id_jadwal] LEFT JOIN kelas ON jadwal_absen.id_kelas = kelas.$data[id_kelas] LEFT JOIN mapel ON jadwal_absen.id_mapel = mapel.$data[id_mapel]") or die('Query Error : '.mysqli_error($koneksi));
+                while ($data = mysqli_fetch_assoc($query)) {
+                    echo "
+                    <form method='POST' action='./controller/hapus_jadwal_absen.php?id_jadwal=$data[id_jadwal]&id_kelas=$data[id_kelas]&id_mapel=$data[id_mapel]' class='w-full h-full absolute z-10'>
+                        <div class='flex w-full h-full justify-center items-center bg-black bg-opacity-15'>
+                            <div class='bg-white px-6 py-4 shadow-lg rounded-xl'>
+                                <h1 class='mb-3' >You're about to delete <b>$data[id_jadwal]</b> record and all related.</h1> 
+                                <div class='flex text-white gap-1 float-right'>
+                                    <button type='submit' name='delete' class='py-1 px-3 bg-blue-500 rounded-lg'>Ok</button>
+                                    <a href='?page=data_jadwal_absen' class='py-1 px-3 bg-red-500 rounded-lg'>Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -147,6 +190,12 @@ $query_user = mysqli_query($koneksi, "SELECT * FROM user WHERE user_id = '$useri
                     include "./view/admin/layouts/tambah_jadwal.php";
                 } else if ($_GET['page'] == "ubah_jadwal") {
                     include "./view/admin/layouts/ubah_jadwal.php";
+                } else if ($_GET['page'] == "data_jadwal_absen") {
+                    include "./view/admin/layouts/data_jadwal_absen.php";
+                } else if ($_GET['page'] == "ubah_jadwal_absen") {
+                    include "./view/admin/layouts/ubah_jadwal_absen.php";
+                } else if ($_GET['page'] == "tambah_jadwal_absen") {
+                    include "./view/admin/layouts/tambah_jadwal_absen.php";
                 }
             ?>
             <div class="p-4 bg-white rounded-xl">

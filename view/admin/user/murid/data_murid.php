@@ -88,7 +88,7 @@
         <tbody>
             <?php
                 if (isset($cari)) {
-                    $jumlah = "SELECT * FROM murid WHERE id LIKE '%$cari%' OR nama LIKE '%$cari%' OR kelas LIKE '%$cari%'";
+                    $jumlah = "SELECT * FROM murid LEFT JOIN kelas ON murid.kelas = kelas.id_kelas WHERE id LIKE '%$cari%' OR nama LIKE '%$cari%' OR kelas LIKE '%$cari%'";
                 } else {
                     $jumlah = "SELECT * FROM murid";
                 }
@@ -103,7 +103,7 @@
                 $start = ($page - 1) * $limit;
 
                 if (isset($cari)) {
-                    $sql = "SELECT * FROM murid WHERE id LIKE '%$cari%' OR nama LIKE '%$cari%' OR kelas OR jabatan LIKE '%$cari%' ORDER BY id DESC LIMIT $start, $limit";
+                    $sql = "SELECT * FROM murid LEFT JOIN kelas ON murid.kelas = kelas.id_kelas WHERE id LIKE '%$cari%' OR nama LIKE '%$cari%' OR kelas LIKE '%$cari%' OR jabatan LIKE '%$cari%' ORDER BY nama ASC LIMIT $start, $limit";
                 }
                 $query = mysqli_query($koneksi, $sql);
 
@@ -113,14 +113,9 @@
                     echo "<td class='px-4 py-2'>".$start."</td>";
                     echo "<td class='px-4 py-2'>".$data['id']."</td>";
                     echo "<td class='px-4 py-2'>".$data['nama']."</td>";
-                    echo "<td class='px-4 py-2'>".$data['kelas']."</td>";
+                    echo "<td class='px-4 py-2'>".$data['grade']." ".$data['kode']."</td>";
                     echo "<td class='px-4 py-2'>".$data['jabatan']."</td>";
                     echo "<td class='px-4 py-2 flex items-center gap-2'>
-                        <a href='?page=lihat_data_murid&id=$data[id]' class='px-2 py-1.5'>
-                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-4 h-4'>
-                                <path stroke-linecap='round' stroke-linejoin='round' d='M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z' />
-                            </svg>
-                        </a>
                         <a href='?page=ubah_murid&id=$data[id]' class='px-2 py-1.5 text-blue-500'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='w-4 h-4'>
                                 <path d='M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z' />

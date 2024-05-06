@@ -80,13 +80,14 @@
                 <th class="py-2 px-4 text-start">No.</th>
                 <th class="py-2 px-4 text-start">Kode Mata Pelajaran</th>
                 <th class="py-2 px-4 text-start">Nama Mata Pelajaran</th>
+                <th class="py-2 px-4 text-start">Kode</th>
                 <th class="py-2 px-4 text-start">action</th>
             </tr>
         </thead>
         <tbody>
             <?php
                 if (isset($cari)) {
-                    $jumlah = "SELECT * FROM mapel WHERE id_mapel LIKE '%$cari%' OR nama_mapel LIKE '%$cari%'";
+                    $jumlah = "SELECT * FROM mapel WHERE id_mapel LIKE '%$cari%' OR nama_mapel LIKE '%$cari%' OR kode_mapel LIKE '%$cari%'";
                 } else {
                     $jumlah = "SELECT * FROM mapel";
                 }
@@ -101,7 +102,7 @@
                 $start = ($page - 1) * $limit;
 
                 if (isset($cari)) {
-                    $sql = "SELECT * FROM mapel WHERE id_mapel LIKE '%$cari%' OR nama_mapel LIKE '%$cari%' ORDER BY id_mapel DESC LIMIT $start, $limit";
+                    $sql = "SELECT * FROM mapel WHERE id_mapel LIKE '%$cari%' OR nama_mapel LIKE '%$cari%' OR kode_mapel LIKE '%$cari%' ORDER BY id_mapel ASC LIMIT $start, $limit";
                 }
                 $query = mysqli_query($koneksi, $sql);
 
@@ -111,6 +112,7 @@
                     echo "<td class='px-4 py-2'>".$start."</td>";
                     echo "<td class='px-4 py-2'>".$data['id_mapel']."</td>";
                     echo "<td class='px-4 py-2'>".$data['nama_mapel']."</td>";
+                    echo "<td class='px-4 py-2'>".$data['kode_mapel']."</td>";
                     echo "<td class='px-4 py-2 flex items-center gap-2'>
                         <a href='?page=ubah_mapel&id=$data[id_mapel]' class='px-2 py-1.5 text-blue-500'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='w-4 h-4'>

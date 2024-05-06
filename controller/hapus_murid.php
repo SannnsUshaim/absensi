@@ -7,7 +7,7 @@
         $sql_delete_user = "DELETE FROM user WHERE user_id = ?";
         
         // Siapkan pernyataan delete untuk guru
-        $sql_delete_guru = "DELETE FROM guru WHERE id = ?";
+        $sql_delete_guru = "DELETE FROM murid WHERE id = ?";
 
         // Mencoba mengeksekusi pernyataan delete untuk user
         if($stmt_user = mysqli_prepare($koneksi, $sql_delete_user)){
@@ -33,7 +33,7 @@
                     // Mencoba mengeksekusi pernyataan persiapan
                     if(mysqli_stmt_execute($stmt_guru)){
                         // Jika data berhasil dihapus, redirect ke halaman data guru
-                        header("location: ../?page=data_guru");
+                        header("location: ../?page=data_murid&status=3");
                         exit();
                     } else{
                         echo "Oops! Ada yang salah. Silakan coba lagi nanti.";

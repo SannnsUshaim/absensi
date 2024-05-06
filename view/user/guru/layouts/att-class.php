@@ -10,7 +10,7 @@
             
             
             while ($data = mysqli_fetch_array($query)) {
-                if  ($data['id_kelas'] != '000') {
+                if  ($data['id_kelas'] != '-') {
                     echo '
                     <a href="./?page=attend&id='.$data['id_kelas'].'" class="flex items-center justify-between bg-slate-200 shadow-lg px-4 py-2 rounded-xl focus:bg-slate-800 focus:text-neutral-100">
                     <div class="flex items-center gap-2">
@@ -27,7 +27,6 @@
                 }
             }
             ?>
-            
         </div>
     </div>
 </div>

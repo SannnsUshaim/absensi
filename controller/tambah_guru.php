@@ -89,6 +89,7 @@ if (isset($_POST['save'])) {
         header('Location: ../?page=data_guru&status=1');
     }
 } else {
-    die ('Access Denied...');
+    header("location: ../403.php");
+    exit(0);
 }
 ?>

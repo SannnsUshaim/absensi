@@ -4,10 +4,12 @@
             <div class="flex flex-col gap-8">
                 <label for="kode">Kode Mapel</label>
                 <label for="nama">Nama Mata Pelajaran</label>
+                <label for="nama">Kode</label>
             </div>
             <div class="flex flex-col gap-5">
                 <input type="text" name="id_mapel" id="id_mapel" maxlength="5" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
                 <input type="text" name="nama_mapel" id="nama_mapel" maxlength="30" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
+                <input type="text" name="kode_mapel" id="kode_mapel" maxlength="10" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
             </div>
         </div>
         <div class="absolute bottom-0">

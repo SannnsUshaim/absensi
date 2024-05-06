@@ -9,8 +9,8 @@
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $sql_murid = "SELECT * FROM murid WHERE kelas = '$id'";
-        $sql_murid_search = "SELECT * FROM murid WHERE murid.kelas = '$id' AND id LIKE '%$cari%' OR nama LIKE '%$cari%'";
+        $sql_murid = "SELECT * FROM murid LEFT JOIN kelas ON murid.kelas = kelas.id_kelas";
+        $sql_murid_search = "SELECT * FROM murid LEFT JOIN kelas ON murid.kelas = kelas.id_kelas WHERE murid.nama LIKE '%$cari%'";
         $query = mysqli_query($koneksi, "SELECT * FROM kelas WHERE id_kelas = '$id'");
         $query_murid = mysqli_query($koneksi, $sql_murid);
         $query_murid_search = mysqli_query ($koneksi, $sql_murid_search);
@@ -114,7 +114,7 @@
                             FROM murid 
                             LEFT JOIN absen ON murid.id = absen.id 
                             WHERE murid.id LIKE '%$cari%' OR murid.nama LIKE '%$cari%' OR absen.status LIKE '%$cari'
-                            ORDER BY murid.nama DESC";
+                            ORDER BY murid.nama ASC";
                         }
                         $query = mysqli_query($koneksi, $sql);
     

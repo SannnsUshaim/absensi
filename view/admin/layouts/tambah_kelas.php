@@ -5,11 +5,13 @@
                 <label for="kode">Kode Kelas</label>
                 <label for="nama">Tingkatan</label>
                 <label for="major">Jurusan</label>
+                <label for="major">Kode</label>
             </div>
             <div class="flex flex-col gap-5">
                 <input type="text" name="id_kelas" id="id_kelas" maxlength="5" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
                 <input type="text" name="grade" id="grade" maxlength="30" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
                 <input type="text" name="major" id="major" maxlength="50" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
+                <input type="text" name="kode" id="kode" maxlength="10" class="border-2 border-slate-500 rounded-lg px-2 py-1 focus:!outline-none w-full" required>
             </div>
         </div>
         <div class="absolute bottom-0">

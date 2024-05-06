@@ -81,13 +81,14 @@
                 <th class="py-2 px-4 text-start">Kode Kelas</th>
                 <th class="py-2 px-4 text-start">Tingkatan</th>
                 <th class="py-2 px-4 text-start">Jurusan</th>
+                <th class="py-2 px-4 text-start">Kode</th>
                 <th class="py-2 px-4 text-start">action</th>
             </tr>
         </thead>
         <tbody>
             <?php
                 if (isset($cari)) {
-                    $jumlah = "SELECT * FROM kelas WHERE id_kelas LIKE '%$cari%' OR grade LIKE '%$cari%' OR major LIKE '%$cari%'";
+                    $jumlah = "SELECT * FROM kelas WHERE id_kelas LIKE '%$cari%' OR grade LIKE '%$cari%' OR major LIKE '%$cari%' OR kode LIKE '%$cari%'";
                 } else {
                     $jumlah = "SELECT * FROM kelas";
                 }
@@ -102,7 +103,7 @@
                 $start = ($page - 1) * $limit;
 
                 if (isset($cari)) {
-                    $sql = "SELECT * FROM kelas WHERE id_kelas LIKE '%$cari%' OR grade LIKE '%$cari%' OR major LIKE '%$cari%' ORDER BY id_kelas DESC LIMIT $start, $limit";
+                    $sql = "SELECT * FROM kelas WHERE id_kelas LIKE '%$cari%' OR grade LIKE '%$cari%' OR major LIKE '%$cari%' OR kode LIKE '%$cari' ORDER BY id_kelas ASC LIMIT $start, $limit";
                 }
                 $query = mysqli_query($koneksi, $sql);
 
@@ -113,6 +114,7 @@
                     echo "<td class='px-4 py-2'>".$data['id_kelas']."</td>";
                     echo "<td class='px-4 py-2'>".$data['grade']."</td>";
                     echo "<td class='px-4 py-2'>".$data['major']."</td>";
+                    echo "<td class='px-4 py-2'>".$data['kode']."</td>";
                     echo "<td class='px-4 py-2 flex items-center gap-2'>
                         <a href='?page=ubah_kelas&id=$data[id_kelas]' class='px-2 py-1.5 text-blue-500'>
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='w-4 h-4'>

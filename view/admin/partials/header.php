@@ -76,16 +76,42 @@
             </svg>              
             </i>
         </a> Tambah Kelas';
-        } else if ($_GET['page'] == "lihat_data_guru") {
-            echo '<a href="?page=data_guru">
+        } else if ($_GET['page'] == "jadwal") {
+            echo "Jadwal";
+        } else if ($_GET['page'] == "tambah_jadwal") {
+            echo '<a href="?page=jadwal">
             <i>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>              
             </i>
-        </a> Lihat Data Guru';
-        } else if ($_GET['page'] == "jadwal") {
-            echo "Jadwal";
+            </a> Tambah Jadwal';
+        } else if ($_GET['page'] == "ubah_jadwal") {
+            echo '<a href="?page=jadwal">
+            <i>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>              
+            </i>
+            </a> Ubah Jadwal';
+        } else if ($_GET['page'] == "data_jadwal_absen") {
+            echo "Jadwal Absen";
+        } else if ($_GET['page'] == "tambah_jadwal_absen") {
+            echo '<a href="?page=data_jadwal_absen">
+            <i>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>              
+            </i>
+            </a> Tambah Jadwal Absen';
+        } else if ($_GET['page'] == "ubah_jadwal_absen") {
+            echo '<a href="?page=data_jadwal_absen">
+            <i>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>              
+            </i>
+            </a> Ubah Jadwal Absen';
         }
     ?></h1>
     <div class='flex gap-3'>

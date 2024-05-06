@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "../config/koneksi.php";
 
 if (isset($_POST['save'])) {
@@ -7,10 +7,9 @@ if (isset($_POST['save'])) {
     $major = $_POST['major'];
     $kode = $_POST['kode'];
 
-    $query = mysqli_query($koneksi, "INSERT INTO kelas VALUES ('$id', '$grade', '$major', '$kode')");
-
+    $query = mysqli_query($koneksi, "UPDATE kelas SET grade = '$grade', major = '$major', kode = '$kode' WHERE id_kelas = '$id'");
     if ($query) {
-        header("location: ../?page=data_kelas&status=1");
+        header("location: ../?page=data_kelas&status=2");
     } else {
         header("location: ../?page=data_kelas&status=4");
     }

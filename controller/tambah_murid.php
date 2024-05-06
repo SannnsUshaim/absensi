@@ -61,12 +61,12 @@ if (isset($_POST['save'])) {
         $role = $_POST['role'];
 
         // Lakukan pengecekan apakah user dengan username yang diinput sudah ada dalam database
-        $query_check_user = mysqli_query($koneksi, "SELECT user_id FROM user WHERE username = '$username'");
+        $query_check_user = mysqli_query($koneksi, "SELECT user_id FROM user WHERE user_id = '$user_id'");
         if (mysqli_num_rows($query_check_user) == 0) {
             // Jika user belum ada, buat entri baru dalam tabel user
             $query_insert_user = mysqli_query($koneksi, "INSERT INTO user (user_id, username, password, email, role) VALUES ('$user_id', '$username', '$password', '$email', '$role')");
             if (!$query_insert_user) {
-                header("location: ../?page=data_mruid&status=4");
+                header("location: ../?page=data_murid&status=4");
                 die("Error creating user: " . mysqli_error($koneksi));
             }
             // Dapatkan user ID yang baru dibuat
@@ -88,6 +88,7 @@ if (isset($_POST['save'])) {
         header('Location: ../?page=data_murid&status=1');
     }
 } else {
-    die('Access Denied...');
+    header("location: ../403.php");
+    exit(0);
 }
 ?>

@@ -3,8 +3,8 @@ include "../config/koneksi.php";
 if (isset($_POST['save'])) {
     $id = $_POST['id_mapel'];
     $nama = $_POST['nama_mapel'];
-
-    $query = mysqli_query($koneksi, "INSERT INTO mapel VALUES ('$id', '$nama')");
+    $kode = $_POST['kode_mapel'];
+    $query = mysqli_query($koneksi, "INSERT INTO mapel VALUES ('$id', '$nama', '$kode')");
 
     if ($query) {
         header("location: ../?page=data_mapel&status=1");
@@ -12,6 +12,7 @@ if (isset($_POST['save'])) {
         header("location: ../?page=data_mapel&status=4");
     }
 } else {
-    die("Access Denied...");
+    header("location: ../403.php");
+    exit(0);
 }
 ?>

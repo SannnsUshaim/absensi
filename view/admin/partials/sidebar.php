@@ -4,7 +4,7 @@
     </div>
     <ul class="py-8 flex flex-col gap-5">
         <li>
-            <a href="./" class="flex items-center text-sm text-white gap-3 p-3 rounded-xl <?php if (empty($_GET['page'])) { echo "bg-slate-200 !text-neutral-700 scale-105";}?>">
+            <a href="./" class="flex items-center text-sm text-white gap-3 p-3 rounded-xl <?php if (empty($_GET['page'])) { echo "bg-slate-200 !text-neutral-700 scale-105";} else {echo '';}?>">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                     <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
                     <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
@@ -50,6 +50,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
             </svg>
             Jadwal
+            </a>
+        </li>
+        <li>
+            <a href="?page=data_jadwal_absen" class="flex items-center text-sm text-white gap-3 p-3 rounded-xl <?php if (empty($_GET['page'])) {echo"";} else if ($_GET['page'] == "data_jadwal_absen" || $_GET['page'] == "tambah_jadwal_absen" || $_GET['page'] == "ubah_jadwal_absen") { echo "bg-slate-200 !text-neutral-700 scale-105";}?>">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="<?php if (empty($_GET['page'])) {echo"none";} else if ($_GET['page'] == 'data_jadwal_absen' || $_GET['page'] == "tambah_jadwal_absen" || $_GET['page'] == "ubah_jadwal_absen") {echo 'currentColor';} else {echo 'none';}?>" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+            </svg>
+            Jadwal Absen
             </a>
         </li>
     </ul>

@@ -20,7 +20,7 @@
                     <label for="no_telp">No. Telpon</label>
                     <input type="text" name="no_telp" id="no_telp" maxlength="13" class="px-2 py-1 border-2 border-slate-500 rounded-lg focus:outline-none" required>
                 </div>
-                <div class="flex items-center gap-18">
+                <div class="flex items-center gap-[70px]">
                     <label for="kelas">Kelas</label>
                     <select name="kelas" id="kelas" class="px-2 py-1 border-2 border-slate-500 rounded-lg focus:outline-none" required>
                         <?php 
